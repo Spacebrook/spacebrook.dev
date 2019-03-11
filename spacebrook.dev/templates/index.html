@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-gb">
+<head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{% block description %}{{ config.description }}{% endblock description %}">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Fira+Sans|Merriweather" rel="stylesheet">
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <link rel="stylesheet" href="{{ get_url(path="app.css") }}" />
+</head>
+
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar__content">
+        <h1>Spacebrook</h1>
+        <p>
+            Coming soon.
+        </p>
+
+        <ul class="sidebar__nav">
+        </ul>
+
+        <div class="sidebar__social">
+            <a href="mailto:spacebrookinc@gmail.com"><i class="icon-mail"></i></a>
+        </div>
+    </div>
+</aside>
+
+</body>
+</html>
