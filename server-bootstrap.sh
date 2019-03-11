@@ -55,6 +55,17 @@ sudo docker run \
 EOF
 chmod +x cleanup.sh
 
+cat << 'EOF' > pre-ssl.sh
+#!/bin/bash -e
+
+sudo docker rm -f spacebrook.dev || true
+sudo docker run \
+    -v /root/www:/app/www/ \
+    -p 80:80 \
+    -p 443:443 --name spacebrook.dev -d spacebrook.dev
+EOF
+chmod +x pre-ssl.sh
+
 sudo ./cleanup.sh
 
 echo "Run ./upgrade.sh with the latest version."
@@ -67,10 +78,15 @@ echo "Run ./upgrade.sh with the latest version."
 # sudo apt-get update
 # sudo apt-get install -y certbot
 #
-# After the server is running...
+# Run the server without ssl certs:
+# Pull the image and tag it as spacebrook.dev
+# Run pre-ssl.sh
 #
 # Set up the cert:
 # letsencrypt certonly --webroot-path /root/www
+#
+# Generate the dhparam:
+# openssl dhparam -dsaparam -out /etc/letsencrypt/live/spacebrook.dev/dhparam.pem 4096
 #
 # Then, install cert crontab as root:
 # sudo su -
@@ -80,3 +96,4 @@ echo "Run ./upgrade.sh with the latest version."
 # Test cert generation:
 # letsencrypt renew --dry-run
 #
+# Now you can release with make release

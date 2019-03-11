@@ -12,5 +12,5 @@ push: build
 	docker tag spacebrook.dev spacebrook/spacebrook.dev:$(TAG)
 	docker push spacebrook/spacebrook.dev:$(TAG)
 
-upgrade: push
-	ssh root@spacebrook.dev ./upgrade $(TAG)
+release: push
+	ssh root@spacebrook.dev ./upgrade.sh $(TAG)
